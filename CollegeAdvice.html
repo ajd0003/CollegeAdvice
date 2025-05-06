@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear Freshmen, From a College Graduate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Indie+Flower&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background-color: #d6e6f2;
+      --title-color: #1a365d;
+      --polaroid-bg: #fff;
+      --polaroid-border: #eee;
+      --string-color: #8b4513;
+      --clip-color: #607d8b;
+      --text-color: #333;
+      --button-color: #f8b195;
+      --button-hover: #f67280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--background-color);
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2393b7d0' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+      font-family: 'Shadows Into Light', cursive;
+      color: var(--text-color);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      color: var(--title-color);
+      text-align: center;
+      font-size: 3.5rem;
+      margin: 30px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+    }
+
+    .string-row {
+      position: relative;
+      height: 300px;
+      margin: 60px 0;
+    }
+
+    .string {
+      position: absolute;
+      height: 3px;
+      background-color: var(--string-color);
+      width: 100%;
+      top: 90px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .polaroid-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .polaroid {
+      background: var(--polaroid-bg);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      width: 220px;
+      padding: 15px 15px 40px 15px;
+      position: relative;
+      margin: 10px;
+      transition: all 0.3s ease;
+      transform: rotate(var(--rotation));
+      z-index: 1;
+    }
+
+    .polaroid:hover {
+      transform: rotate(var(--rotation)) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+
+    .photo-frame {
+      width: 100%;
+      height: 160px;
+      background-color: #f0f0f0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-frame .placeholder {
+      font-family: 'Indie Flower', cursive;
+      text-align: center;
+      padding: 10px;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .photo-caption {
+      font-family: 'Shadows Into Light', cursive;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .photo-date {
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .clip {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background-color: var(--clip-color);
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      z-index: 2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .clip::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.3);
+      top: 10px;
+      left: 10px;
+      clip-path: polygon(25% 0%, 75% 0%, 75% 100%, 25% 100%);
+    }
+
+    .advice-section {
+      text-align: center;
+      margin: 50px 0 30px;
+    }
+
+    .advice-button {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      background-color: var(--button-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .advice-button:hover {
+      background-color: var(--button-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* File input styling */
+    .file-input {
+      display: none;
+    }
+
+    .polaroid[style*="--rotation: -4deg"] { top: -10px; }
+    .polaroid[style*="--rotation: 3deg"] { top: 5px; }
+    .polaroid[style*="--rotation: -2deg"] { top: -5px; }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px 0;
+      font-family: 'Indie Flower', cursive;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .polaroid {
+        width: 180px;
+      }
+      .photo-frame {
+        height: 130px;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .string-row {
+        height: auto;
+        margin: 30px 0;
+      }
+      .string {
+        display: none;
+      }
+      .polaroid {
+        margin: 20px auto;
+        transform: none !important;
+      }
+      .polaroid:hover {
+        transform: scale(1.05) !important;
+      }
+      .clip {
+        top: -30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dear Freshmen, From a College Graduate</h1>
+    
+    <!-- First Row -->
+    <div class="string-row">
+      <div class="string"></div>
+      <div class="polaroid-container">
+        <div class="polaroid" style="--rotation: -4deg">
+          <div class="clip"></div>
+          <label for="photo1">
+            <div class="photo-frame" id="frame1">
+              <div class="placeholder">Move-In Day</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo1" accept="image/*">
+          <p class="photo-caption">Move-In Day</p>
+          <p class="photo-date" id="date1"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: 3deg">
+          <div class="clip"></div>
+          <label for="photo2">
+            <div class="photo-frame" id="frame2">
+              <div class="placeholder">First Day of Classes</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo2" accept="image/*">
+          <p class="photo-caption">First Day of Classes</p>
+          <p class="photo-date" id="date2"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: -2deg">
+          <div class="clip"></div>
+          <label for="photo3">
+            <div class="photo-frame" id="frame3">
+              <div class="placeholder">Club Fair</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo3" accept="image/*">
+          <p class="photo-caption">Club Fair</p>
+          <p class="photo-date" id="date3"></p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Second Row -->
+    <div class="string-row">
+      <div class="string"></div>
+      <div class="polaroid-container">
+        <div class="polaroid" style="--rotation: 2deg">
+          <div class="clip"></div>
+          <label for="photo4">
+            <div class="photo-frame" id="frame4">
+              <div class="placeholder">First Hockey Game</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo4" accept="image/*">
+          <p class="photo-caption">First Hockey Game</p>
+          <p class="photo-date" id="date4"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: -3deg">
+          <div class="clip"></div>
+          <label for="photo5">
+            <div class="photo-frame" id="frame5">
+              <div class="placeholder">First Basketball Game</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo5" accept="image/*">
+          <p class="photo-caption">First Basketball Game</p>
+          <p class="photo-date" id="date5"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: 4deg">
+          <div class="clip"></div>
+          <label for="photo6">
+            <div class="photo-frame" id="frame6">
+              <div class="placeholder">A Picture With Friends</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo6" accept="image/*">
+          <p class="photo-caption">A Picture With Friends</p>
+          <p class="photo-date" id="date6"></p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Third Row -->
+    <div class="string-row">
+      <div class="string"></div>
+      <div class="polaroid-container">
+        <div class="polaroid" style="--rotation: -1deg">
+          <div class="clip"></div>
+          <label for="photo7">
+            <div class="photo-frame" id="frame7">
+              <div class="placeholder">Studying in the Library</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo7" accept="image/*">
+          <p class="photo-caption">Studying in the Library</p>
+          <p class="photo-date" id="date7"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: 5deg">
+          <div class="clip"></div>
+          <label for="photo8">
+            <div class="photo-frame" id="frame8">
+              <div class="placeholder">Finals Week</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo8" accept="image/*">
+          <p class="photo-caption">Finals Week</p>
+          <p class="photo-date" id="date8"></p>
+        </div>
+        
+        <div class="polaroid" style="--rotation: -3deg">
+          <div class="clip"></div>
+          <label for="photo9">
+            <div class="photo-frame" id="frame9">
+              <div class="placeholder">Moving Out</div>
+            </div>
+          </label>
+          <input type="file" class="file-input" id="photo9" accept="image/*">
+          <p class="photo-caption">Moving Out</p>
+          <p class="photo-date" id="date9"></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="advice-section">
+      <a id="adviceLink" href="#"><button class="advice-button" id="adviceButton">Today's Advice</button></a>
+    </div>
+    
+    <footer>
+      <p>Capture your journey. Cherish every moment.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Handle file uploads and storage
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all file inputs
+      const fileInputs = document.querySelectorAll('.file-input');
+      
+      // Add event listeners to each input
+      fileInputs.forEach((input, index) => {
+        const frameId = `frame${index + 1}`;
+        const dateId = `date${index + 1}`;
+        const frame = document.getElementById(frameId);
+        const dateElement = document.getElementById(dateId);
+        
+        // Check if there's a saved image
+        const savedImage = localStorage.getItem(`college_photo_${index}`);
+        const savedDate = localStorage.getItem(`college_photo_date_${index}`);
+        
+        if (savedImage) {
+          frame.innerHTML = `<img src="${savedImage}" alt="College Memory">`;
+          dateElement.textContent = savedDate || '';
+        }
+        
+        // Add change event listener
+        input.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+              // Save to localStorage
+              localStorage.setItem(`college_photo_${index}`, event.target.result);
+              
+              // Display image
+              frame.innerHTML = `<img src="${event.target.result}" alt="College Memory">`;
+              
+              // Set and save date
+              const today = new Date();
+              const dateStr = today.toLocaleDateString();
+              dateElement.textContent = dateStr;
+              localStorage.setItem(`college_photo_date_${index}`, dateStr);
+            };
+            
+            reader.readAsDataURL(file);
+          }
+        });
+        
+        // Make the frame clickable to trigger file input
+        frame.addEventListener('click', function() {
+          input.click();
+        });
+      });
+
+      // Dynamic advice link based on day of the week
+      function setDailyAdvice() {
+        const adviceLink = document.getElementById('adviceLink');
+        const adviceButton = document.getElementById('adviceButton');
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 is Sunday, 1 is Monday, etc.
+        
+        // Define URLs for each day of the week
+        const advicePages = {
+          0: "advice7.html",     // Sunday - Here to Stay or Gone Tomorrow?
+          1: "advice1take5.html", // Monday - To Skip or Not to Skip
+          2: "advice2.html",     // Tuesday - Don't Overload Your Schedule
+          3: "advice3.html",     // Wednesday - Textbooks & Tribulations
+          4: "advice4.html",     // Thursday - Studying for Finals?
+          5: "advice5.html",     // Friday - A Student's Best Friend
+          6: "advice6.html"      // Saturday - "Yes" Now, Sleep Later
+        };
+        
+        // Define advice titles for each day
+        const adviceTitles = {
+          0: "Here to Stay or Gone Tomorrow?",
+          1: "To Skip or Not to Skip",
+          2: "Don't Overload Your Schedule",
+          3: "Textbooks & Tribulations",
+          4: "Studying for Finals?",
+          5: "A Student's Best Friend",
+          6: "\"Yes\" Now, Sleep Later"
+        };
+        
+        // Set the button's href attribute to the URL for today
+        adviceLink.href = advicePages[dayOfWeek];
+        
+        // Update button text to show today's advice topic
+        adviceButton.textContent = `Today's Advice: ${adviceTitles[dayOfWeek]}`;
+      }
+      
+      // Call the function when the page loads
+      setDailyAdvice();
+    });
+  </script>
+</body>
+</html>
